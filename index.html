@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CV Builder | SAED</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+    <header class="topbar">
+        <div class="brand">
+            <div class="brand-icon">CV</div>
+            <div>
+                <h1>CV Builder</h1>
+                <span>Professional Resume Generator</span>
+            </div>
+        </div>
+
+        <div class="top-actions">
+            <button type="button" class="btn btn-secondary" id="newCVBtn">
+                New CV
+            </button>
+
+            <button type="button" class="btn btn-primary" id="saveBtn">
+                Save CV
+            </button>
+
+            <button type="button" class="btn btn-success" id="printBtn">
+                Download PDF
+            </button>
+        </div>
+    </header>
+
+
+    <!-- ================= MAIN APPLICATION ================= -->
+    <main class="app-container">
+
+        <!-- ================= EDITOR ================= -->
+        <section class="editor">
+
+            <div class="section-heading">
+                <div>
+                    <h2>Build Your CV</h2>
+                    <p>Enter your information and preview your CV instantly.</p>
+                </div>
+            </div>
+
+
+            <!-- Personal Information -->
+            <div class="form-card">
+
+                <div class="card-title">
+                    <span class="number">01</span>
+
+                    <div>
+                        <h3>Personal Information</h3>
+                        <p>Basic information about you</p>
+                    </div>
+                </div>
+
+                <div class="photo-upload">
+                    <div class="photo-preview" id="photoPreview">
+                        <span>Photo</span>
+                    </div>
+
+                    <div>
+                        <label for="profilePhoto" class="upload-btn">
+                            Upload Photo
+                        </label>
+
+                        <input
+                            type="file"
+                            id="profilePhoto"
+                            accept="image/*"
+                            hidden
+                        >
+
+                        <small>JPG or PNG recommended</small>
+                    </div>
+                </div>
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label for="fullName">Full Name *</label>
+                        <input
+                            type="text"
+                            id="fullName"
+                            placeholder="e.g. John Doe"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="jobTitle">Professional Title</label>
+                        <input
+                            type="text"
+                            id="jobTitle"
+                            placeholder="e.g. Frontend Developer"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input
+                            type="email"
+                            id="email"
+                            placeholder="john@example.com"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input
+                            type="tel"
+                            id="phone"
+                            placeholder="+234 800 000 0000"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="location">Location</label>
+                        <input
+                            type="text"
+                            id="location"
+                            placeholder="Abuja, Nigeria"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="website">Website / Portfolio</label>
+                        <input
+                            type="url"
+                            id="website"
+                            placeholder="https://example.com"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="linkedin">LinkedIn</label>
+                        <input
+                            type="text"
+                            id="linkedin"
+                            placeholder="linkedin.com/in/username"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="github">GitHub</label>
+                        <input
+                            type="text"
+                            id="github"
+                            placeholder="github.com/username"
+                        >
+                    </div>
+
+                </div>
+            </div>
+
+
+            <!-- Professional Summary -->
+            <div class="form-card">
+
+                <div class="card-title">
+                    <span class="number">02</span>
+
+                    <div>
+                        <h3>Professional Summary</h3>
+                        <p>Briefly introduce yourself</p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="summary">About You</label>
+
+                    <textarea
+                        id="summary"
+                        rows="5"
+                        placeholder="Write a short professional summary about yourself..."
+                    ></textarea>
+                </div>
+
+            </div>
+
+
+            <!-- Education -->
+            <div class="form-card">
+
+                <div class="card-title">
+                    <span class="number">03</span>
+
+                    <div>
+                        <h3>Education</h3>
+                        <p>Add your educational qualifications</p>
+                    </div>
+                </div>
+
+                <div id="educationContainer"></div>
+
+                <button type="button" class="add-btn" id="addEducationBtn">
+                    + Add Education
+                </button>
+
+            </div>
+
+
+            <!-- Experience -->
+            <div class="form-card">
+
+                <div class="card-title">
+                    <span class="number">04</span>
+
+                    <div>
+                        <h3>Work Experience</h3>
+                        <p>Add your employment history</p>
+                    </div>
+                </div>
+
+                <div id="experienceContainer"></div>
+
+                <button type="button" class="add-btn" id="addExperienceBtn">
+                    + Add Experience
+                </button>
+
+            </div>
+
+
+            <!-- Skills -->
+            <div class="form-card">
+
+                <div class="card-title">
+                    <span class="number">05</span>
+
+                    <div>
+                        <h3>Skills</h3>
+                        <p>Highlight your key abilities</p>
+                    </div>
+                </div>
+
+                <div class="skills-input-area">
+
+                    <div class="form-group">
+                        <label for="skillInput">Add Skill</label>
+
+                        <div class="skill-input-row">
+                            <input
+                                type="text"
+                                id="skillInput"
+                                placeholder="e.g. JavaScript"
+                            >
+
+                            <button
+                                type="button"
+                                class="btn btn-primary"
+                                id="addSkillBtn"
+                            >
+                                Add
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="skill-tags" id="skillTags"></div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Projects -->
+            <div class="form-card">
+
+                <div class="card-title">
+                    <span class="number">06</span>
+
+                    <div>
+                        <h3>Projects</h3>
+                        <p>Showcase relevant projects</p>
+                    </div>
+                </div>
+
+                <div id="projectContainer"></div>
+
+                <button type="button" class="add-btn" id="addProjectBtn">
+                    + Add Project
+                </button>
+
+            </div>
+
+
+            <!-- Certifications -->
+            <div class="form-card">
+
+                <div class="card-title">
+                    <span class="number">07</span>
+
+                    <div>
+                        <h3>Certifications</h3>
+                        <p>Add professional certificates</p>
+                    </div>
+                </div>
+
+                <div id="certificationContainer"></div>
+
+                <button type="button" class="add-btn" id="addCertificationBtn">
+                    + Add Certification
+                </button>
+
+            </div>
+
+
+            <!-- References -->
+            <div class="form-card">
+
+                <div class="card-title">
+                    <span class="number">08</span>
+
+                    <div>
+                        <h3>References</h3>
+                        <p>Add professional references</p>
+                    </div>
+                </div>
+
+                <div id="referenceContainer"></div>
+
+                <button type="button" class="add-btn" id="addReferenceBtn">
+                    + Add Reference
+                </button>
+
+            </div>
+
+
+            <!-- Appearance -->
+            <div class="form-card">
+
+                <div class="card-title">
+                    <span class="number">09</span>
+
+                    <div>
+                        <h3>CV Appearance</h3>
+                        <p>Customize the appearance of your CV</p>
+                    </div>
+                </div>
+
+                <div class="appearance-grid">
+
+                    <div>
+                        <label>Accent Color</label>
+
+                        <div class="color-options">
+
+                            <button
+                                type="button"
+                                class="color-option active"
+                                data-color="#2563eb"
+                                style="background:#2563eb;"
+                            ></button>
+
+                            <button
+                                type="button"
+                                class="color-option"
+                                data-color="#059669"
+                                style="background:#059669;"
+                            ></button>
+
+                            <button
+                                type="button"
+                                class="color-option"
+                                data-color="#7c3aed"
+                                style="background:#7c3aed;"
+                            ></button>
+
+                            <button
+                                type="button"
+                                class="color-option"
+                                data-color="#dc2626"
+                                style="background:#dc2626;"
+                            ></button>
+
+                            <button
+                                type="button"
+                                class="color-option"
+                                data-color="#0f172a"
+                                style="background:#0f172a;"
+                            ></button>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= CV PREVIEW ================= -->
+        <section class="preview-area">
+
+            <div class="preview-toolbar">
+
+                <div>
+                    <strong>Live Preview</strong>
+                    <span>A4 Document</span>
+                </div>
+
+                <button type="button" class="btn btn-success" id="previewPrintBtn">
+                    Print / PDF
+                </button>
+
+            </div>
+
+
+            <div class="cv-paper" id="cvPreview">
+
+                <!-- CV Header -->
+                <div class="cv-header">
+
+                    <div class="cv-header-info">
+
+                        <h1 id="previewName">
+                            Your Name
+                        </h1>
+
+                        <h2 id="previewJobTitle">
+                            Professional Title
+                        </h2>
+
+                        <div class="contact-list">
+
+                            <span id="previewEmail">
+                                email@example.com
+                            </span>
+
+                            <span id="previewPhone">
+                                +234 000 000 0000
+                            </span>
+
+                            <span id="previewLocation">
+                                Location
+                            </span>
+
+                        </div>
+
+                        <div class="social-list">
+
+                            <span id="previewWebsite"></span>
+                            <span id="previewLinkedin"></span>
+                            <span id="previewGithub"></span>
+
+                        </div>
+
+                    </div>
+
+                    <div class="cv-photo" id="previewPhoto">
+                        <span>Photo</span>
+                    </div>
+
+                </div>
+
+
+                <!-- Summary -->
+                <div class="cv-section" id="previewSummarySection">
+
+                    <h3 class="cv-section-title">
+                        Profile
+                    </h3>
+
+                    <p id="previewSummary">
+                        Your professional summary will appear here.
+                    </p>
+
+                </div>
+
+
+                <!-- Experience -->
+                <div
+                    class="cv-section"
+                    id="previewExperienceSection"
+                >
+
+                    <h3 class="cv-section-title">
+                        Work Experience
+                    </h3>
+
+                    <div id="previewExperience">
+                        <p class="empty-preview">
+                            Your work experience will appear here.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <!-- Education -->
+                <div
+                    class="cv-section"
+                    id="previewEducationSection"
+                >
+
+                    <h3 class="cv-section-title">
+                        Education
+                    </h3>
+
+                    <div id="previewEducation">
+                        <p class="empty-preview">
+                            Your education will appear here.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <!-- Skills -->
+                <div
+                    class="cv-section"
+                    id="previewSkillsSection"
+                >
+
+                    <h3 class="cv-section-title">
+                        Skills
+                    </h3>
+
+                    <div
+                        class="preview-skills"
+                        id="previewSkills"
+                    >
+                        <span class="skill-pill">
+                            Your skills
+                        </span>
+                    </div>
+
+                </div>
+
+
+                <!-- Projects -->
+                <div
+                    class="cv-section"
+                    id="previewProjectsSection"
+                >
+
+                    <h3 class="cv-section-title">
+                        Projects
+                    </h3>
+
+                    <div id="previewProjects"></div>
+
+                </div>
+
+
+                <!-- Certifications -->
+                <div
+                    class="cv-section"
+                    id="previewCertificationsSection"
+                >
+
+                    <h3 class="cv-section-title">
+                        Certifications
+                    </h3>
+
+                    <div id="previewCertifications"></div>
+
+                </div>
+
+
+                <!-- References -->
+                <div
+                    class="cv-section"
+                    id="previewReferencesSection"
+                >
+
+                    <h3 class="cv-section-title">
+                        References
+                    </h3>
+
+                    <div
+                        class="references-grid"
+                        id="previewReferences"
+                    ></div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- Toast notification -->
+    <div class="toast" id="toast">
+        <span id="toastMessage">CV saved successfully!</span>
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
